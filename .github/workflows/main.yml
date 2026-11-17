@@ -34,24 +34,19 @@ jobs:
         working-directory: launcher
         run: gradle jar --no-daemon
 
-      - name: Make Windows installer (.exe)
-        continue-on-error: true
+      - name: Make Windows app with built-in Java
         shell: pwsh
         run: |
-          jpackage --type exe --name "HURO Launcher" --app-version 1.0.0 
+          jpackage --type app-image --name "HURO Launcher" --app-version 1.0.0 
             --input launcher/build/libs --main-jar HuroLauncher.jar --main-class huro.HuroLauncher 
-            --win-shortcut --win-menu --win-dir-chooser --dest dist
+            --add-modules java.base,java.desktop,java.logging,java.net.http,java.xml,java.naming,java.prefs,java.sql,java.management,jdk.crypto.ec,jdk.zipfs,jdk.unsupported `
+            --dest dist
+          Compress-Archive -Path "dist/HURO Launcher" -DestinationPath "dist/HURO-Launcher-Windows.zip"
 
       - uses: actions/upload-artifact@v4
         with:
-          name: HURO-Launcher-installer
-          path: dist/*.exe
-          if-no-files-found: warn
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: HURO-Launcher-jar
-          path: launcher/build/libs/HuroLauncher.jar
+          name: HURO-Launcher-Windows
+          path: dist/HURO-Launcher-Windows.zip
 
       - uses: actions/upload-artifact@v4
         with:
