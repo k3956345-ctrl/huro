@@ -157,7 +157,7 @@ public class HuroVisualClient implements ClientModInitializer {
         }
 
         // Client-side time and weather
-        if (c.timeOverride) mc.world.setTimeOfDay(c.customTime);
+        if (c.timeOverride) mc.world.getLevelProperties().setTimeOfDay(c.customTime);
         switch (c.weatherMode) {
             case 1 -> { mc.world.setRainGradient(0f); mc.world.setThunderGradient(0f); }
             case 2 -> { mc.world.setRainGradient(1f); mc.world.setThunderGradient(0f); }
