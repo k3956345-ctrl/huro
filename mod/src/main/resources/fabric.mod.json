@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "huro_visual",
+  "version": "${version}",
+  "name": "HURO VISUAL",
+  "description": "Visual client mod: hit effects, hit sound, HUD, fullbright, crosshair, time/weather, friends, markers.",
+  "authors": ["HURO"],
+  "license": "All-Rights-Reserved",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["com.huro.visual.HuroVisualClient"]
+  },
+  "mixins": ["huro_visual.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~1.21.4",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
